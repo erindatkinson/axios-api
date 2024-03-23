@@ -1,0 +1,34 @@
+version: "3"
+services:
+  db:
+    image: postgres:16.2-alpine
+    restart: always
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./tmp/data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_PASSWORD: TwasBrilligAndTheSlithyToves
+      POSTGRES_USER: appadmin
+      POSTGRES_DB: todolist
+      PGDATA: /var/lib/postgresql/data/pgdata
+  api:
+    image: todo-server
+    build:
+      context: ./api
+    environment:
+      DB_HOST: db
+      DB_PASSWORD: TwasBrilligAndTheSlithyToves
+      DB_USERNAME: appadmin
+      DB_DATABASE: todolist
+      DB_PORT: 5432
+    ports:
+      - 5000:5000
+
+  web:
+    image: todo-web
+    build:
+      context: ./web
+    ports:
+      - 8080:80
+    
