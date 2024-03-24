@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 """the main module is the entrypoint for the api"""
+from random import randint
+from uuid import uuid1
 from flask import Flask, request, jsonify, json
 from flask_cors import CORS
+from faker import Faker
 import db
 
 
@@ -15,8 +18,8 @@ db.engine.init_app(app)
 @app.get("/tasks")
 def list_todos():
     """list_todos
-        Desc: Handler for the /tasks GET route
-        Produces: json"""
+    Desc: Handler for the /tasks GET route
+    Produces: json"""
     all_tasks = db.session.query(db.Task).all()
     return jsonify(all_tasks), 200
 
@@ -24,9 +27,9 @@ def list_todos():
 @app.post("/tasks")
 def new_todo():
     """new_todo
-        Desc: Handler for the /tasks POST route
-        Accepts: json
-        Produces: json"""
+    Desc: Handler for the /tasks POST route
+    Accepts: json
+    Produces: json"""
     data = dict(json.loads(request.get_data()))
     try:
         todo_id = data["id"]
@@ -45,8 +48,8 @@ def new_todo():
 @app.get("/tasks/<string:todo_id>")
 def get_todo(todo_id: str):
     """get_todo
-        Desc: Handler for the /tasks/:id GET route
-        Produces: json"""
+    Desc: Handler for the /tasks/:id GET route
+    Produces: json"""
     todo = db.engine.get_or_404(db.Task, todo_id)
     return jsonify(todo), 200
 
@@ -54,9 +57,9 @@ def get_todo(todo_id: str):
 @app.patch("/tasks/<string:todo_id>")
 def update_todo(todo_id: str):
     """update_todo
-        Desc: Handler for the /tasks/:id PATCH route
-        Accepts: json
-        Produces: json"""
+    Desc: Handler for the /tasks/:id PATCH route
+    Accepts: json
+    Produces: json"""
     todo = db.engine.get_or_404(db.Task, todo_id)
     data = dict(json.loads(request.get_data()))
     updateable = False
@@ -76,7 +79,7 @@ def update_todo(todo_id: str):
 @app.delete("/tasks/<string:todo_id>")
 def delete_todo(todo_id: str):
     """delete_todo
-        Desc: Handler for the /tasks/:id DELETE route"""
+    Desc: Handler for the /tasks/:id DELETE route"""
     todo = db.engine.get_or_404(db.Task, todo_id)
     db.session.delete(todo)
     db.session.commit()
