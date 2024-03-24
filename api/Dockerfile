@@ -6,4 +6,4 @@ COPY ./Pipfile .
 COPY ./Pipfile.lock .
 RUN pipenv install
 COPY . .
-ENTRYPOINT [ "pipenv", "run", "gunicorn", "--bind", "0.0.0.0:5000", "-w", "4", "main:app" ]
+ENTRYPOINT [ "pipenv", "run", "gunicorn", "--bind", "0.0.0.0:5000", "-w", "4", "app:app" ]
