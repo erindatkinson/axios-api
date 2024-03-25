@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import './Todo.css';
 
 function usePrevious(value) {
     const ref = useRef();

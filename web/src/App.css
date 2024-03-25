@@ -1,0 +1,117 @@
+/* Global styles */
+.btn {
+    border: 0.2rem solid #4d4d4d;
+    cursor: pointer;
+    padding: 0.8rem 1rem 0.7rem;
+    text-transform: capitalize;
+}
+
+.btn.toggle-btn {
+    border-color: #d3d3d3;
+    border-width: 1px;
+}
+
+.btn.toggle-btn[aria-pressed="true"] {
+    border-color: #4d4d4d;
+    text-decoration: underline;
+}
+
+.btn__danger {
+    background-color: #ca3c3c;
+    border-color: #bd2130;
+    color: #fff;
+}
+
+.btn__filter {
+    border-color: lightgrey;
+}
+
+.btn__primary {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-group>* {
+    flex: 1 1 49%;
+}
+
+.btn-group>*+* {
+    margin-left: 0.8rem;
+}
+
+.visually-hidden {
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+}
+
+[class*="stack"]>* {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.stack-small>*+* {
+    margin-top: 1.25rem;
+}
+
+.stack-large>*+* {
+    margin-top: 2.5rem;
+}
+
+@media screen and (min-width: 550px) {
+    .stack-small>*+* {
+        margin-top: 1.4rem;
+    }
+
+    .stack-large>*+* {
+        margin-top: 2.8rem;
+    }
+}
+
+.stack-exception {
+    margin-top: 1.2rem;
+}
+
+/* End global styles */
+
+/* General app styles */
+.todoapp {
+    background: #fff;
+    box-shadow:
+        0 2px 4px 0 rgb(0 0 0 / 20%),
+        0 2.5rem 5rem 0 rgb(0 0 0 / 10%);
+    margin: 2rem 0 4rem 0;
+    padding: 1rem;
+    position: relative;
+}
+
+@media screen and (min-width: 550px) {
+    .todoapp {
+        padding: 4rem;
+    }
+}
+
+.todoapp>* {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50rem;
+}
+
+.todoapp>h1 {
+    display: block;
+    margin: 0;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* End general app styles */
